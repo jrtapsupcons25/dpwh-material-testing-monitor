@@ -1,0 +1,62 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "framework": "create-react-app",
+  "nodeVersion": "18.x",
+  "installCommand": "npm install",
+  "env": [
+    {
+      "key": "REACT_APP_SUPABASE_URL",
+      "value": "@dpwh_supabase_url"
+    },
+    {
+      "key": "REACT_APP_SUPABASE_KEY",
+      "value": "@dpwh_supabase_key"
+    }
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  },
+  "redirects": [
+    {
+      "source": "/admin",
+      "destination": "/"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}
